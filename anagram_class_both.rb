@@ -4,14 +4,14 @@ class AnagramSolver
             word_list = File.open(word_list).read.split(/\b/)
             
             word_hash = Hash[word_list.map { |x| [x.upcase, x.chars.to_a.sort.join.upcase] }]
-            # Group hash elements by values
+            
             word_hash = word_hash.group_by { |key, value| word_hash[key] }
-            # Remove non-word values
+            
             word_hash.each_pair do |key, value|
                 word_hash[key] = value.transpose.delete_at(0)
             end
 
-            # Search for anagrams
+            
             if word_hash[word.chars.to_a.sort.join.upcase] == nil
                 puts "Sorry! No #{word.length}-letter anagrams found."
             else
