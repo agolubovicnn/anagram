@@ -21,7 +21,7 @@
 
        in_array.each do |word|
         word = word.strip
-         word_letters = word.gsub(/[a...]/, "")
+         word_letters = word.gsub(/[^a-z]/i, "")
           key = word_letters.downcase.chars.sort.join
           
     if anagrams.has_key?(key)
